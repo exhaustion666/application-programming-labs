@@ -2,7 +2,7 @@ import cv2
 import matplotlib.pyplot as plt
 import numpy as np
 
-def display_image(image: np.ndarray, title: str = 'Image') -> None:
+def display_image(image: np.ndarray, title: str) -> None:
     """
     Display an image
     :param image: Source image
