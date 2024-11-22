@@ -14,8 +14,11 @@ def main():
     inverted_image = invert_colors(image)
     display_image(image, title='Original Image')
     display_image(inverted_image, title='Inverted Image')
-    cv2.imwrite(output_image_path, inverted_image)
-    print(f"Inverted image saved to {output_image_path}")
+    try:
+        cv2.imwrite(output_image_path, inverted_image)
+        print(f"Inverted image saved to {output_image_path}")
+    except Exception as e:
+        print(e)
 
 if __name__ == "__main__":
     main()
