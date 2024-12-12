@@ -10,6 +10,9 @@ from PyQt5.QtWidgets import QApplication, QFileDialog, QLabel, QMainWindow, QPus
 
 class MainWindow(QMainWindow):
     def __init__(self):
+        """
+        Creates a window for displaying images, next image button and a button for selecting an annotation file
+        """
         super().__init__()
         self.setWindowTitle("Image Dataset Viewer")
         self.setGeometry(100, 100, 800, 600)
@@ -35,6 +38,9 @@ class MainWindow(QMainWindow):
         self.iterator = None
 
     def select_annotation(self):
+        """
+        Opens a dialog box to open the annotation file
+        """
         annotation_file = QFileDialog.getOpenFileName(self, "Choose annotation file")[0]
         if annotation_file:
             self.iterator = SimpleIterator(annotation_file)
@@ -42,6 +48,9 @@ class MainWindow(QMainWindow):
             self.show_next_image()
 
     def show_next_image(self):
+        """
+        Shows next image in annotation file
+        """
         if self.iterator:
             try:
                 image_path = next(self.iterator)
@@ -50,6 +59,9 @@ class MainWindow(QMainWindow):
                 self.label.setText("No more images.")
 
     def display_image(self, image_path):
+        """
+        Displays current image in annotatin file
+        """
         if os.path.exists(image_path):
             pixmap = QPixmap(image_path)
             scaled_pixmap = pixmap.scaled(self.image_label.size(), aspectRatioMode=1)
